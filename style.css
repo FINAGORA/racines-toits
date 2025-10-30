@@ -2,7 +2,7 @@
   --primary-color: #2c3e50;
   --secondary-color: #3498db;
   --chateau-color: #f7c6c7;  
-  --eglise-color: #e6d4fa;    
+  --egliseetabbaye-color: #e6d4fa;    
   --manoir-color: #fcd99c; 
   --urgence-color: #ff4757;
   --fiscal-color: #27ae60;
@@ -211,7 +211,7 @@ article h2 {
   color: #fff;
 }
 .tag-chateau { background: var(--chateau-color); }
-.tag-eglise { background: var(--eglise-color); }
+.tag-egliseetabbaye { background: var(--egliseetabbaye-color); }
 .tag-manoir { background: var(--manoir-color); }
 .tag-urgence { background: var(--urgence-color); font-weight: 600; }
 .tag-fiscal { background: var(--fiscal-color); }
