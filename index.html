@@ -60,19 +60,19 @@
 
   <div class="search-container">
     <input type="text" id="search-input" placeholder="Rechercher un projet, une région, un type de bâtiment..." aria-label="Rechercher un projet" autocomplete="off">
-    <button onclick="searchProjects()" aria-label="Lancer la recherche">Rechercher</button>
+    <button id="search-button" aria-label="Lancer la recherche">Rechercher</button>
   </div>
 </header>
 
-<main>
+<main class="main-container">
   <!-- Barre de filtres -->
   <div class="filters">
-    <button onclick="filterProjects('all')" class="active">Tous</button>
-    <button onclick="filterProjects('Château')">Châteaux</button>
-    <button onclick="filterProjects('Église')">Églises</button>
-    <button onclick="filterProjects('Manoir')">Manoirs</button>
-    <button onclick="filterProjects('Urgence')">Urgence</button>
-    <button onclick="filterProjects('Réduction fiscale')">Réduction fiscale</button>
+    <button data-tag="all" class="active">Tous</button>
+    <button data-tag="Château">Châteaux</button>
+    <button data-tag="Église">Églises</button>
+    <button data-tag="Manoir">Manoirs</button>
+    <button data-tag="Urgence">Urgence</button>
+    <button data-tag="Réduction fiscale">Réduction fiscale</button>
   </div>
 
   <!-- Projets -->
@@ -136,15 +136,15 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Filtres
-  function filterProjects(tag) {
-    const projects = document.querySelectorAll('article');
-    const buttons = document.querySelectorAll('.filters button');
+  const buttons = document.querySelectorAll('.filters button');
+  const projects = document.querySelectorAll('article');
+
+  function filterProjects(tag, button) {
     buttons.forEach(btn => btn.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+    button.classList.add('active');
     projects.forEach(project => {
       const projectTags = project.getAttribute('data-tags').split(',');
-      if(tag === 'all' || projectTags.includes(tag.trim())){
+      if(tag === 'all' || projectTags.includes(tag)){
         project.style.display = 'block';
       } else {
         project.style.display = 'none';
@@ -152,10 +152,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Recherche
-  window.searchProjects = function() {
+  buttons.forEach(button => {
+    button.addEventListener('click', function() {
+      filterProjects(this.dataset.tag, this);
+    });
+  });
+
+  document.getElementById('search-button').addEventListener('click', function() {
     const input = document.getElementById('search-input').value.toLowerCase();
-    const projects = document.querySelectorAll('article');
     projects.forEach(project => {
       const title = project.querySelector('h2').textContent.toLowerCase();
       const region = project.querySelector('.region').textContent.toLowerCase();
@@ -166,14 +170,10 @@ document.addEventListener('DOMContentLoaded', function() {
         project.style.display = 'none';
       }
     });
-  }
-
-  document.querySelectorAll('.filters button').forEach(button => {
-    button.addEventListener('click', function() { filterProjects(this.textContent.trim()); });
   });
 
-  document.getElementById('search-input').addEventListener('keypress', function(e) {
-    if(e.key === 'Enter') searchProjects();
+  document.getElementById('search-input').addEventListener('keypress', function(e){
+    if(e.key === 'Enter') document.getElementById('search-button').click();
   });
 });
 </script>
