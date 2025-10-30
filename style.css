@@ -5,7 +5,7 @@
   --eglise-color: #9b59b6;
   --manoir-color: #f39c12;
   --urgence-color: #ff4757;
-  --fiscal-color: #2ecc71;
+  --fiscal-color: #27ae60;
   --light-color: #f8f9fa;
   --dark-color: #212529;
   --gray-color: #6c757d;
@@ -18,13 +18,14 @@
   --transition: all 0.3s ease-in-out;
 }
 
+/* Global */
 body {
   font-family: var(--font-family);
   line-height: 1.6;
   margin: 0;
   padding: 0;
   color: var(--dark-color);
-  background: var(--light-color);
+  background-color: var(--light-color);
 }
 
 .main-container {
@@ -33,6 +34,7 @@ body {
   padding: 0 1.5rem;
 }
 
+/* Header */
 header {
   background: linear-gradient(135deg,var(--primary-color),var(--secondary-color));
   color: var(--white-color);
@@ -93,15 +95,15 @@ header p {
   background: #e0384f;
 }
 .search-container::before {
-  content:"🔍";
-  position:absolute;
-  left:1rem;
-  top:50%;
-  transform:translateY(-50%);
+  content: "🔍";
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--gray-color);
-  pointer-events:none;
-  font-size:1.1rem;
-  z-index:1;
+  pointer-events: none;
+  font-size: 1.1rem;
+  z-index: 1;
 }
 
 /* Filtres */
@@ -116,7 +118,7 @@ header p {
   padding: 0.7rem 1.5rem;
   border: none;
   border-radius: var(--border-radius);
-  background: #fff;
+  background: var(--white-color);
   color: var(--primary-color);
   cursor: pointer;
   font-weight: 500;
@@ -141,7 +143,7 @@ header p {
   box-sizing: border-box;
 }
 article {
-  background: #fff;
+  background: var(--white-color);
   padding: 1.5rem;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
@@ -212,32 +214,15 @@ article h2 {
   border-radius: 50px;
   font-size: 0.8rem;
   font-weight: 500;
-  transition: var(--transition);
-}
-.tag-chateau {
-  background: var(--chateau-color);
   color: #fff;
+  display: inline-block;
+  text-align: center;
 }
-.tag-eglise {
-  background: var(--eglise-color);
-  color: #fff;
-}
-.tag-manoir {
-  background: var(--manoir-color);
-  color: #fff;
-}
-.tag-urgence {
-  background: var(--urgence-color);
-  color: #fff;
-  border: 2px solid #fff;
-  font-weight: 600;
-}
-.tag-fiscal {
-  background: var(--fiscal-color);
-  color: #fff;
-  border: 1px solid #27ae60;
-  font-weight: 600;
-}
+.tag-chateau { background: var(--chateau-color); }
+.tag-eglise { background: var(--eglise-color); }
+.tag-manoir { background: var(--manoir-color); }
+.tag-urgence { background: var(--urgence-color); font-weight: 600; }
+.tag-fiscal { background: var(--fiscal-color); }
 
 /* Projets urgents */
 article[data-tags*="Urgence"] {
@@ -246,49 +231,54 @@ article[data-tags*="Urgence"] {
   overflow: hidden;
 }
 article[data-tags*="Urgence"]::before {
-  content:"";
-  position:absolute;
-  top:0; left:0; right:0;
-  height:4px;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
   background: var(--urgence-color);
   animation: pulse 2s infinite;
 }
 @keyframes pulse {
-  0%{opacity:1;}
-  50%{opacity:0.5;}
-  100%{opacity:1;}
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
 }
 
 /* Footer */
 footer {
-  text-align:center;
-  padding:3rem 1rem;
-  background:#f2f2f2;
+  max-width: 1200px;
+  margin: 2rem auto 3rem auto;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  background: #f2f2f2;
   color: var(--dark-color);
-  margin-top:3rem;
-  border-top:2px solid var(--secondary-color);
+  border-top: 2px solid var(--secondary-color);
+  border-radius: 12px;
 }
 footer p:first-child {
-  font-size:1.2rem;
-  font-style:italic;
-  font-family:var(--font-family-title);
-  margin-bottom:1rem;
+  font-size: 1.2rem;
+  font-family: var(--font-family-title);
+  font-style: italic;
+  margin-bottom: 1rem;
 }
 footer p:last-child {
-  font-size:0.9rem;
+  font-size: 0.9rem;
   color: var(--gray-color);
-  margin-top:0.5rem;
+  margin-top: 0.5rem;
 }
 
 /* Responsive */
-@media(max-width:768px){
-  header h1{font-size:2rem;}
-  header p{font-size:1.1rem;}
-  .search-container{flex-direction:column;align-items:center;}
-  .search-container input,.search-container button{width:100%;border-radius:var(--border-radius);margin-top:0.5rem;}
-  .projects{grid-template-columns:1fr;}
+@media(max-width:768px) {
+  header h1 { font-size: 2rem; }
+  header p { font-size: 1.1rem; }
+  .search-container { flex-direction: column; align-items: center; }
+  .search-container input,
+  .search-container button { width: 100%; border-radius: var(--border-radius); margin-top: 0.5rem; }
+  .projects { grid-template-columns: 1fr; }
 }
-@media(max-width:480px){
-  .filters{flex-direction:column;align-items:center;}
-  .filters button{width:100%;}
+@media(max-width:480px) {
+  .filters { flex-direction: column; align-items: center; }
+  .filters button { width: 100%; }
 }
