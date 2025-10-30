@@ -1,6 +1,5 @@
 /* ============================ */
 /* Variables et typographie */
-/* ============================ */
 :root {
   --primary-color: #2c3e50;
   --secondary-color: #3498db;
@@ -33,6 +32,14 @@ body {
 }
 
 /* ============================ */
+/* Main container pour recentrer */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ============================ */
 /* Header */
 header {
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -59,7 +66,7 @@ header p {
 }
 
 /* ============================ */
-/* Barre de recherche "pill" */
+/* Barre de recherche */
 .search-container {
   display: flex;
   justify-content: center;
@@ -241,69 +248,3 @@ article h2 {
 .tag-chateau { background: rgba(231,76,60,0.2); color: var(--chateau-color);}
 .tag-eglise { background: rgba(155,89,182,0.2); color: var(--eglise-color);}
 .tag-manoir { background: rgba(243,156,18,0.2); color: var(--manoir-color);}
-.tag-fiscal { background: rgba(46,204,113,0.2); color: var(--fiscal-color); border: 1px solid var(--fiscal-color); font-weight: 600;}
-.tag-urgence { background: var(--urgence-color); color: #fff; font-weight: 700; box-shadow: 0 3px 6px rgba(0,0,0,0.2);}
-
-/* ============================ */
-/* Projets Urgence */
-article[data-tags*="Urgence"] {
-  border: 3px solid var(--urgence-color);
-  overflow: hidden;
-  animation: pulse-border 2s infinite;
-}
-
-article[data-tags*="Urgence"]:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 16px 28px rgba(255,71,87,0.3);
-}
-
-article[data-tags*="Urgence"]::before {
-  content: "⚠ URGENCE";
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: var(--urgence-color);
-  color: #fff;
-  font-weight: 700;
-  padding: 0.4rem 0.8rem;
-  border-bottom-right-radius: var(--border-radius);
-  font-size: 0.95rem;
-}
-
-@keyframes pulse-border {
-  0%, 100% { border-color: var(--urgence-color); }
-  50% { border-color: #ff6b6b; }
-}
-
-/* ============================ */
-/* Footer */
-footer {
-  text-align: center;
-  padding: 2rem 1rem;
-  background: var(--white-color);
-  color: var(--gray-color);
-  margin-top: 3rem;
-  border-top: 1px solid rgba(0,0,0,0.05);
-}
-
-footer p:first-child {
-  font-size: 1.2rem;
-  font-style: italic;
-  font-family: var(--font-family-title);
-  margin-bottom: 1rem;
-}
-
-/* ============================ */
-/* Responsive */
-@media (max-width: 768px) {
-  header h1 { font-size: 2rem; }
-  header p { font-size: 1.1rem; }
-  .search-container { flex-direction: column; align-items: stretch; }
-  .search-container input, .search-container button { width: 100%; border-radius: 50px; margin: 0.25rem 0; }
-  .projects { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 480px) {
-  .filters { flex-direction: column; align-items: center; }
-  .filters button { width: 100%; }
-}
