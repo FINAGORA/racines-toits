@@ -31,7 +31,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="style.css"></noscript>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -92,7 +93,6 @@
       <p class="amount">Montant nécessaire : <strong itemprop="estimatedCost" content="50000">50 000 €</strong></p>
       <p class="fiscal-info">✅ Éligible à une réduction d'impôt de 60%</p>
       <a href="https://lien-vers-la-page-de-dons.com" target="_blank" rel="noopener noreferrer" class="project-link" itemprop="url">Participer au financement →</a>
-      <meta itemprop="description" content="Le Château de XYZ, classé monument historique, a besoin de 50 000 € pour restaurer sa toiture. Bénéficiez d'une réduction fiscale de 60%.">
     </article>
 
     <article itemscope itemtype="https://schema.org/Project" data-tags="Église,Réduction fiscale">
@@ -108,7 +108,6 @@
       <p class="amount">Montant nécessaire : <strong itemprop="estimatedCost" content="20000">20 000 €</strong></p>
       <p class="fiscal-info">✅ Éligible à une réduction d'impôt de 30%</p>
       <a href="https://lien-vers-la-page-de-dons.com" target="_blank" rel="noopener noreferrer" class="project-link" itemprop="url">Participer au financement →</a>
-      <meta itemprop="description" content="L'Église Saint-Pierre, joyau du patrimoine breton, recherche 20 000 € pour restaurer ses vitraux du XIXe siècle. Réduction fiscale de 30%.">
     </article>
 
     <article itemscope itemtype="https://schema.org/Project" data-tags="Manoir,Urgence">
@@ -123,7 +122,6 @@
       <p class="region" itemprop="address">Région : <span itemprop="addressRegion">Pays de la Loire</span></p>
       <p class="amount">Montant nécessaire : <strong itemprop="estimatedCost" content="30000">30 000 €</strong></p>
       <a href="https://lien-vers-la-page-de-dons.com" target="_blank" rel="noopener noreferrer" class="project-link" itemprop="url">Participer au financement →</a>
-      <meta itemprop="description" content="Le Manoir de ABC, témoin de l'histoire locale, a besoin de 30 000 € pour préserver ses fresques uniques.">
     </article>
 
   </section>
@@ -134,49 +132,39 @@
   <p>Une initiative citoyenne pour préserver et transmettre le patrimoine français.<br>© 2025 Racines & Toits. Tous droits réservés.</p>
 </footer>
 
-<script>
+<script defer>
 document.addEventListener('DOMContentLoaded', function() {
   const buttons = document.querySelectorAll('.filters button');
   const projects = document.querySelectorAll('article');
+  const searchInput = document.getElementById('search-input');
+  const searchButton = document.getElementById('search-button');
 
-  function filterProjects(tag, button) {
-    buttons.forEach(btn => btn.classList.remove('active'));
+  function filterProjects(tag, button){
+    buttons.forEach(b => b.classList.remove('active'));
     button.classList.add('active');
-    projects.forEach(project => {
-      const projectTags = project.getAttribute('data-tags').split(',');
-      if(tag === 'all' || projectTags.includes(tag)){
-        project.style.display = 'block';
-      } else {
-        project.style.display = 'none';
-      }
+    projects.forEach(p => {
+      const projectTags = p.dataset.tags.split(',');
+      p.style.display = (tag === 'all' || projectTags.includes(tag)) ? 'block' : 'none';
     });
   }
 
-  buttons.forEach(button => {
-    button.addEventListener('click', function() {
-      filterProjects(this.dataset.tag, this);
-    });
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => filterProjects(btn.dataset.tag, btn));
   });
 
-  document.getElementById('search-button').addEventListener('click', function() {
-    const input = document.getElementById('search-input').value.toLowerCase();
-    projects.forEach(project => {
-      const title = project.querySelector('h2').textContent.toLowerCase();
-      const region = project.querySelector('.region').textContent.toLowerCase();
-      const tags = project.getAttribute('data-tags').toLowerCase();
-      if(title.includes(input) || region.includes(input) || tags.includes(input)){
-        project.style.display = 'block';
-      } else {
-        project.style.display = 'none';
-      }
+  function searchProjects(){
+    const query = searchInput.value.toLowerCase();
+    projects.forEach(p => {
+      const title = p.querySelector('h2').textContent.toLowerCase();
+      const region = p.querySelector('.region').textContent.toLowerCase();
+      const tags = p.dataset.tags.toLowerCase();
+      p.style.display = (title.includes(query) || region.includes(query) || tags.includes(query)) ? 'block' : 'none';
     });
-  });
+  }
 
-  document.getElementById('search-input').addEventListener('keypress', function(e){
-    if(e.key === 'Enter') document.getElementById('search-button').click();
-  });
+  searchButton.addEventListener('click', searchProjects);
+  searchInput.addEventListener('keypress', e => { if(e.key === 'Enter') searchProjects(); });
 });
 </script>
-
 </body>
 </html>
