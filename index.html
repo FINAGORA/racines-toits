@@ -3,77 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Racines & Toits | Sauvegardons le patrimoine français</title>
-  <meta name="description" content="Découvrez des projets de restauration du patrimoine français éligibles à des réductions fiscales et participez à leur financement participatif.">
-  <meta name="keywords" content="patrimoine français, restauration monuments, financement participatif, châteaux, églises, manoirs, réduction fiscale, sauvegarde patrimoine, dons patrimoine, Racines & Toits">
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Racines & Toits — Sauvegardons le patrimoine français">
-  <meta property="og:description" content="Participez à la restauration des monuments historiques français et bénéficiez de réductions fiscales.">
+  <meta name="description" content="Racines & Toits — Des mains de nos ancêtres au futur de nos enfants. Découvrez des projets de restauration du patrimoine français éligibles à des réductions fiscales et participez à leur financement participatif.">
+  <meta name="keywords" content="patrimoine français, restauration monuments, financement participatif, châteaux, églises, manoirs, réduction fiscale, sauvegarde patrimoine, dons patrimoine, Racines & Toits, transmission, histoire, futur, avantage fiscal">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta property="og:title" content="Racines & Toits — Des mains de nos ancêtres au futur de nos enfants">
+  <meta property="og:description" content="Découvrez des projets de restauration du patrimoine français éligibles à des réductions fiscales. Participez à leur sauvegarde pour transmettre notre histoire aux générations futures.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://racines-et-toits.github.io/">
   <meta property="og:image" content="https://racines-et-toits.github.io/assets/og-image.jpg">
   <meta property="og:locale" content="fr_FR">
-
-  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Racines & Toits — Sauvegardons le patrimoine français">
-  <meta name="twitter:description" content="Participez à la restauration des monuments historiques français et bénéficiez de réductions fiscales.">
+  <meta name="twitter:title" content="Racines & Toits — Sauvegardons le patrimoine français avec des avantages fiscaux">
+  <meta name="twitter:description" content="Participez à la restauration des monuments historiques français et bénéficiez de réductions fiscales. Des mains de nos ancêtres au futur de nos enfants.">
   <meta name="twitter:image" content="https://racines-et-toits.github.io/assets/og-image.jpg">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://racines-et-toits.github.io/">
-
-  <!-- Fonts -->
+  <title>Racines & Toits | Sauvegardons le patrimoine français avec des avantages fiscaux</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="style.css"></noscript>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-  <!-- Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Racines & Toits",
-    "url": "https://racines-et-toits.github.io/",
-    "description": "Plateforme de financement participatif pour la restauration du patrimoine français avec avantages fiscaux.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://racines-et-toits.github.io/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body itemscope itemtype="https://schema.org/WebPage">
 
-<header itemprop="about" itemscope itemtype="https://schema.org/Organization">
-  <h1 itemprop="name">Racines & Toits</h1>
-  <p itemprop="slogan">Des mains de nos ancêtres<br>au futur de nos enfants</p>
+<div class="main-container">
 
-  <div class="search-container">
-    <input type="text" id="search-input" placeholder="Rechercher un projet, une région, un type de bâtiment..." aria-label="Rechercher un projet" autocomplete="off">
-    <button id="search-button" aria-label="Lancer la recherche">Rechercher</button>
-  </div>
-</header>
+  <header itemprop="about" itemscope itemtype="https://schema.org/Organization">
+    <h1 itemprop="name">Racines & Toits</h1>
+    <p itemprop="slogan">Des mains de nos ancêtres<br>au futur de nos enfants</p>
 
-<main class="main-container">
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Rechercher un projet, une région, un type de bâtiment..." aria-label="Rechercher un projet" autocomplete="off">
+      <button onclick="searchProjects()" aria-label="Lancer la recherche">Rechercher</button>
+    </div>
+  </header>
+
   <!-- Barre de filtres -->
   <div class="filters">
-    <button data-tag="all" class="active">Tous</button>
-    <button data-tag="Château">Châteaux</button>
-    <button data-tag="Église">Églises</button>
-    <button data-tag="Manoir">Manoirs</button>
-    <button data-tag="Urgence">Urgence</button>
-    <button data-tag="Réduction fiscale">Réduction fiscale</button>
+    <button onclick="filterProjects('all')" class="active" aria-label="Afficher tous les projets">Tous</button>
+    <button onclick="filterProjects('Château')" aria-label="Filtrer les châteaux">Châteaux</button>
+    <button onclick="filterProjects('Église')" aria-label="Filtrer les églises">Églises</button>
+    <button onclick="filterProjects('Manoir')" aria-label="Filtrer les manoirs">Manoirs</button>
+    <button onclick="filterProjects('Urgence')" aria-label="Filtrer les projets urgents">Urgence</button>
+    <button onclick="filterProjects('Réduction fiscale')" aria-label="Filtrer les projets avec réduction fiscale">Réduction fiscale</button>
   </div>
 
   <!-- Projets -->
@@ -93,6 +64,7 @@
       <p class="amount">Montant nécessaire : <strong itemprop="estimatedCost" content="50000">50 000 €</strong></p>
       <p class="fiscal-info">✅ Éligible à une réduction d'impôt de 60%</p>
       <a href="https://lien-vers-la-page-de-dons.com" target="_blank" rel="noopener noreferrer" class="project-link" itemprop="url">Participer au financement →</a>
+      <meta itemprop="description" content="Le Château de XYZ, classé monument historique, a besoin de 50 000 € pour restaurer sa toiture. Bénéficiez d'une réduction fiscale de 60% sur votre don.">
     </article>
 
     <article itemscope itemtype="https://schema.org/Project" data-tags="Église,Réduction fiscale">
@@ -108,6 +80,7 @@
       <p class="amount">Montant nécessaire : <strong itemprop="estimatedCost" content="20000">20 000 €</strong></p>
       <p class="fiscal-info">✅ Éligible à une réduction d'impôt de 30%</p>
       <a href="https://lien-vers-la-page-de-dons.com" target="_blank" rel="noopener noreferrer" class="project-link" itemprop="url">Participer au financement →</a>
+      <meta itemprop="description" content="L'Église Saint-Pierre, joyau du patrimoine breton, recherche 20 000 € pour restaurer ses vitraux du XIXe siècle. Réduction fiscale de 30%.">
     </article>
 
     <article itemscope itemtype="https://schema.org/Project" data-tags="Manoir,Urgence">
@@ -122,49 +95,59 @@
       <p class="region" itemprop="address">Région : <span itemprop="addressRegion">Pays de la Loire</span></p>
       <p class="amount">Montant nécessaire : <strong itemprop="estimatedCost" content="30000">30 000 €</strong></p>
       <a href="https://lien-vers-la-page-de-dons.com" target="_blank" rel="noopener noreferrer" class="project-link" itemprop="url">Participer au financement →</a>
+      <meta itemprop="description" content="Le Manoir de ABC, témoin de l'histoire locale, a besoin de 30 000 € pour préserver ses fresques uniques.">
     </article>
 
   </section>
-</main>
 
-<footer>
-  <p><strong>Racines & Toits</strong><br>Des mains de nos ancêtres<br>au futur de nos enfants.</p>
-  <p>Une initiative citoyenne pour préserver et transmettre le patrimoine français.<br>© 2025 Racines & Toits. Tous droits réservés.</p>
-</footer>
+  <footer>
+    <p><strong>Racines & Toits</strong><br>Des mains de nos ancêtres<br>au futur de nos enfants.</p>
+    <p>Une initiative citoyenne pour préserver et transmettre le patrimoine français.<br>© 2025 Racines & Toits. Tous droits réservés.</p>
+  </footer>
 
-<script defer>
+</div> <!-- /main-container -->
+
+<script>
 document.addEventListener('DOMContentLoaded', function() {
-  const buttons = document.querySelectorAll('.filters button');
-  const projects = document.querySelectorAll('article');
-  const searchInput = document.getElementById('search-input');
-  const searchButton = document.getElementById('search-button');
-
-  function filterProjects(tag, button){
-    buttons.forEach(b => b.classList.remove('active'));
-    button.classList.add('active');
-    projects.forEach(p => {
-      const projectTags = p.dataset.tags.split(',');
-      p.style.display = (tag === 'all' || projectTags.includes(tag)) ? 'block' : 'none';
+  function filterProjects(tag) {
+    const projects = document.querySelectorAll('article');
+    const buttons = document.querySelectorAll('.filters button');
+    buttons.forEach(button => button.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    projects.forEach(project => {
+      const projectTags = project.getAttribute('data-tags').split(',');
+      if (tag === 'all' || projectTags.includes(tag.trim())) {
+        project.style.display = 'block';
+      } else {
+        project.style.display = 'none';
+      }
     });
   }
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => filterProjects(btn.dataset.tag, btn));
+  function searchProjects() {
+    const input = document.getElementById('search-input').value.toLowerCase();
+    const projects = document.querySelectorAll('article');
+    projects.forEach(project => {
+      const title = project.querySelector('h2').textContent.toLowerCase();
+      const region = project.querySelector('.region').textContent.toLowerCase();
+      const tags = project.getAttribute('data-tags').toLowerCase();
+      if (title.includes(input) || region.includes(input) || tags.includes(input)) {
+        project.style.display = 'block';
+      } else {
+        project.style.display = 'none';
+      }
+    });
+  }
+
+  document.querySelectorAll('.filters button').forEach(button => {
+    button.addEventListener('click', function() { filterProjects(this.textContent.trim()); });
   });
 
-  function searchProjects(){
-    const query = searchInput.value.toLowerCase();
-    projects.forEach(p => {
-      const title = p.querySelector('h2').textContent.toLowerCase();
-      const region = p.querySelector('.region').textContent.toLowerCase();
-      const tags = p.dataset.tags.toLowerCase();
-      p.style.display = (title.includes(query) || region.includes(query) || tags.includes(query)) ? 'block' : 'none';
-    });
-  }
-
-  searchButton.addEventListener('click', searchProjects);
-  searchInput.addEventListener('keypress', e => { if(e.key === 'Enter') searchProjects(); });
+  document.getElementById('search-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') searchProjects();
+  });
 });
 </script>
+
 </body>
 </html>
